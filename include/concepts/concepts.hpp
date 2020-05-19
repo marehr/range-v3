@@ -1063,10 +1063,10 @@ namespace concepts
         CPP_concept_fragment(totally_ordered_,
             requires(detail::as_cref_t<T> t, detail::as_cref_t<T> u) //
             (
-                t < u ? 1 : 0,
-                t > u ? 1 : 0,
-                u <= t ? 1 : 0,
-                u >= t ? 1 : 0
+                static_cast<bool>(t < u),
+                static_cast<bool>(t > u),
+                static_cast<bool>(u <= t),
+                static_cast<bool>(u >= t)
             ));
         template<typename T>
         CPP_concept_bool totally_ordered =
@@ -1077,14 +1077,14 @@ namespace concepts
         CPP_concept_fragment(totally_ordered_with_,
             requires(detail::as_cref_t<T> t, detail::as_cref_t<U> u) //
             (
-                t < u ? 1 : 0,
-                t > u ? 1 : 0,
-                t <= u ? 1 : 0,
-                t >= u ? 1 : 0,
-                u < t ? 1 : 0,
-                u > t ? 1 : 0,
-                u <= t ? 1 : 0,
-                u >= t ? 1 : 0
+                static_cast<bool>(t < u),
+                static_cast<bool>(t > u),
+                static_cast<bool>(t <= u),
+                static_cast<bool>(t >= u),
+                static_cast<bool>(u < t),
+                static_cast<bool>(u > t),
+                static_cast<bool>(u <= t),
+                static_cast<bool>(u >= t)
             ) &&
             totally_ordered<
                 common_reference_t<detail::as_cref_t<T>, detail::as_cref_t<U>>>
