@@ -874,10 +874,10 @@ namespace concepts
         CPP_concept_fragment(weakly_equality_comparable_with_frag_,
             requires(detail::as_cref_t<T> t, detail::as_cref_t<U> u) //
             (
-                (t == u) ? 1 : 0,
-                (t != u) ? 1 : 0,
-                (u == t) ? 1 : 0,
-                (u != t) ? 1 : 0
+                static_cast<bool>((t == u)),
+                static_cast<bool>((t != u)),
+                static_cast<bool>((u == t)),
+                static_cast<bool>((u != t))
             ));
         template<typename T, typename U>
         CPP_concept_bool weakly_equality_comparable_with_ =
