@@ -112,7 +112,7 @@ namespace ranges
 
     namespace cpp20
     {
-        template<typename Val>
+        template<typename Val, class CharT = char, class Traits = std::char_traits<CharT>>
         using basic_istream_view = ::ranges::istream_view<Val>;
     } // namespace cpp20
     /// @}
